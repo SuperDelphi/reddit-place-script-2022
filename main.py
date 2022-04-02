@@ -97,6 +97,14 @@ first_run_counter = 0
 # function to convert rgb tuple to hexadecimal string
 
 
+# Updates the image automagically
+
+def imgUpdate():
+	img_data = requests.get(
+		"https://raw.githubusercontent.com/SuperDelphi/reddit-place-script-2022/main/image.jpg").content
+	with open("image.jpg", "wb") as handler:
+		handler.write(img_data)
+
 def rgb_to_hex(rgb):
 	return ("#%02x%02x%02x" % rgb).upper()
 
@@ -597,12 +605,3 @@ for i in range(num_credentials):
 	thread1 = threading.Thread(target=task, args=[i])
 	thread1.start()
 	time.sleep(delay_between_launches_seconds)
-
-# Updates the image automagically
-
-
-def imgUpdate():
-	img_data = requests.get(
-		"https://raw.githubusercontent.com/SuperDelphi/reddit-place-script-2022/main/image.jpg").content
-	with open("image.jpg", "wb") as handler:
-		handler.write(img_data)
